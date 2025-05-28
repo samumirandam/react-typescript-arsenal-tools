@@ -35,7 +35,7 @@
     "demo": "pnpm build && tsx scripts/demo.ts",
     "demo:keep": "pnpm build && tsx scripts/demo.ts --keep",
     "setup": "pnpm install && pnpm build",
-    "rta": "node packages/cli/dist/cli.js"
+    "rta": "node packages/cli/dist/index.js"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.4",
