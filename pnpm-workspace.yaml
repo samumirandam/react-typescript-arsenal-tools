@@ -1,0 +1,19 @@
+packages:
+  # Core packages - Platform-agnostic shared logic
+  - 'packages/core'
+  - 'packages/analyzer-web'
+  - 'packages/analyzer-native' # Future React Native support
+  - 'packages/analyzer-shared' # Future cross-platform patterns
+  - 'packages/claude-integration'
+  - 'packages/github-webhook'
+  - 'packages/cli'
+
+  # Applications - Deployable services
+  - 'apps/webhook-service'
+  - 'apps/web-dashboard'
+  - 'apps/landing-page'
+
+  # Developer tools
+  - 'tools/build-configs'
+  - 'tools/testing-utils'
+  - 'tools/scripts'

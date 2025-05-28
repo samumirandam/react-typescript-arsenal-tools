@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./tools/build-configs/typescript.json",
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@rta/core": ["./packages/core/src"],
+      "@rta/analyzer-web": ["./packages/analyzer-web/src"],
+      "@rta/analyzer-native": ["./packages/analyzer-native/src"],
+      "@rta/analyzer-shared": ["./packages/analyzer-shared/src"],
+      "@rta/claude-integration": ["./packages/claude-integration/src"],
+      "@rta/github-webhook": ["./packages/github-webhook/src"],
+      "@rta/cli": ["./packages/cli/src"]
+    }
+  },
+  "references": [
+    { "path": "./packages/core" },
+    { "path": "./packages/analyzer-web" },
+    { "path": "./packages/claude-integration" },
+    { "path": "./packages/cli" }
+  ],
+  "include": [],
+  "files": []
+}

@@ -1,0 +1,19 @@
+
+{
+
+  "name": "webhook-service",
+
+  "version": "0.1.0",
+
+  "private": true,
+
+  "scripts": {
+
+    "build": "echo 'Webhook service build - placeholder'",
+
+    "dev": "echo 'Webhook service dev - placeholder'"
+
+  }
+
+}
+

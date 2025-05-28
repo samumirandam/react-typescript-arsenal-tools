@@ -1,0 +1,89 @@
+
+{
+
+  "name": "@rta/analyzer-web",
+
+  "version": "0.1.0",
+
+  "description": "React web-specific code analysis for React TypeScript Arsenal",
+
+  "main": "./dist/index.js",
+
+  "module": "./dist/index.mjs",
+
+  "types": "./dist/index.d.ts",
+
+  "exports": {
+
+    ".": {
+
+      "import": "./dist/index.mjs",
+
+      "require": "./dist/index.js",
+
+      "types": "./dist/index.d.ts"
+
+    }
+
+  },
+
+  "files": [
+
+    "dist/**"
+
+  ],
+
+  "scripts": {
+
+    "build": "tsup",
+
+    "dev": "tsup --watch",
+
+    "type-check": "tsc --noEmit",
+
+    "lint": "eslint src/**/*.ts",
+
+    "test": "vitest",
+
+    "clean": "rm -rf dist"
+
+  },
+
+  "keywords": ["react", "typescript", "analysis", "web", "ast"],
+
+  "dependencies": {
+
+    "@rta/core": "workspace:*",
+
+    "@typescript-eslint/parser": "^6.15.0",
+
+    "@typescript-eslint/typescript-estree": "^6.15.0",
+
+    "@babel/parser": "^7.23.6",
+
+    "@babel/traverse": "^7.23.6",
+
+    "@babel/types": "^7.23.6",
+
+    "typescript": "^5.3.3",
+
+    "glob": "^10.3.10"
+
+  },
+
+  "devDependencies": {
+
+    "tsup": "^8.0.1",
+
+    "vitest": "^1.1.0"
+
+  },
+
+  "publishConfig": {
+
+    "access": "public"
+
+  }
+
+}
+

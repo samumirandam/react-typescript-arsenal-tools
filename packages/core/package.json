@@ -1,0 +1,77 @@
+
+{
+
+  "name": "@rta/core",
+
+  "version": "0.1.0",
+
+  "description": "Platform-agnostic core types and utilities for React TypeScript Arsenal",
+
+  "main": "./dist/index.js",
+
+  "module": "./dist/index.mjs",
+
+  "types": "./dist/index.d.ts",
+
+  "exports": {
+
+    ".": {
+
+      "types": "./dist/index.d.ts",
+
+      "import": "./dist/index.mjs",
+
+      "require": "./dist/index.js"
+
+    }
+
+  },
+
+  "files": [
+
+    "dist/**"
+
+  ],
+
+  "scripts": {
+
+    "build": "tsup",
+
+    "dev": "tsup --watch",
+
+    "type-check": "tsc --noEmit",
+
+    "lint": "eslint src/**/*.ts",
+
+    "test": "vitest",
+
+    "clean": "rm -rf dist"
+
+  },
+
+  "keywords": ["react", "typescript", "analysis", "core", "cross-platform"],
+
+  "dependencies": {
+
+    "zod": "^3.22.4"
+
+  },
+
+  "devDependencies": {
+
+    "tsup": "^8.0.1",
+
+    "typescript": "^5.3.3",
+
+    "vitest": "^1.1.0"
+
+  },
+
+  "publishConfig": {
+
+    "access": "public"
+
+  }
+
+}
+

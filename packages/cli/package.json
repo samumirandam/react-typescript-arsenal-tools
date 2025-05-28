@@ -1,0 +1,85 @@
+
+{
+
+  "name": "@rta/cli",
+
+  "version": "0.1.0",
+
+  "description": "Command line interface for React TypeScript Arsenal analysis tools",
+
+  "main": "./dist/index.js",
+
+  "bin": {
+
+    "rta": "./dist/cli.js",
+
+    "rta-analyze": "./dist/cli.js"
+
+  },
+
+  "files": [
+
+    "dist/**"
+
+  ],
+
+  "scripts": {
+
+    "build": "tsup",
+
+    "dev": "tsup --watch --onSuccess 'node dist/cli.js'",
+
+    "type-check": "tsc --noEmit",
+
+    "lint": "eslint src/**/*.ts",
+
+    "test": "vitest",
+
+    "clean": "rm -rf dist"
+
+  },
+
+  "keywords": ["react", "typescript", "analysis", "cli", "tools"],
+
+  "dependencies": {
+
+    "@rta/core": "workspace:*",
+
+    "@rta/analyzer-web": "workspace:*",
+
+    "@rta/claude-integration": "workspace:*",
+
+    "commander": "^11.1.0",
+
+    "chalk": "^5.3.0",
+
+    "ora": "^7.0.1"
+
+  },
+
+  "devDependencies": {
+
+    "@types/node": "^20.10.0",
+
+    "tsup": "^8.0.1",
+
+    "typescript": "^5.3.3",
+
+    "vitest": "^1.1.0"
+
+  },
+
+  "publishConfig": {
+
+    "access": "public"
+
+  },
+
+  "engines": {
+
+    "node": ">=18.0.0"
+
+  }
+
+}
+

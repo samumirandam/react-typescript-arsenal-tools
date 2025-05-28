@@ -1,0 +1,83 @@
+
+{
+
+  "name": "@rta/claude-integration",
+
+  "version": "0.1.0",
+
+  "description": "Claude AI integration for intelligent code analysis in React TypeScript Arsenal",
+
+  "main": "./dist/index.js",
+
+  "module": "./dist/index.mjs",
+
+  "types": "./dist/index.d.ts",
+
+  "exports": {
+
+    ".": {
+
+      "import": "./dist/index.mjs",
+
+      "require": "./dist/index.js",
+
+      "types": "./dist/index.d.ts"
+
+    }
+
+  },
+
+  "files": [
+
+    "dist/**"
+
+  ],
+
+  "scripts": {
+
+    "build": "tsup",
+
+    "dev": "tsup --watch",
+
+    "type-check": "tsc --noEmit",
+
+    "lint": "eslint src/**/*.ts",
+
+    "test": "vitest",
+
+    "clean": "rm -rf dist"
+
+  },
+
+  "keywords": ["claude", "ai", "analysis", "react", "typescript"],
+
+  "dependencies": {
+
+    "@rta/core": "workspace:*",
+
+    "@anthropic-ai/sdk": "^0.20.0",
+
+    "zod": "^3.22.4"
+
+  },
+
+  "devDependencies": {
+
+    "tsup": "^8.0.1",
+
+    "typescript": "^5.3.3",
+
+    "vitest": "^1.1.0",
+
+    "@types/node": "^20.10.0"
+
+  },
+
+  "publishConfig": {
+
+    "access": "public"
+
+  }
+
+}
+

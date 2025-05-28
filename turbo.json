@@ -1,0 +1,93 @@
+
+{
+
+  "$schema": "https://turbo.build/schema.json",
+
+  "globalDependencies": ["**/.env.*local"],
+
+  "tasks": {
+
+    "build": {
+
+      "dependsOn": ["^build"],
+
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**", "build/**"]
+
+    },
+
+    "landing-page#build": {
+
+      "outputs": []
+
+    },
+
+    "web-dashboard#build": {
+
+      "outputs": []
+
+    },
+
+    "webhook-service#build": {
+
+      "outputs": []
+
+    },
+
+    "dev": {
+
+      "cache": false,
+
+      "persistent": true
+
+    },
+
+    "lint": {
+
+      "dependsOn": ["^build"],
+
+      "inputs": ["$TURBO_DEFAULT$", ".eslintrc*"]
+
+    },
+
+    "type-check": {
+
+      "dependsOn": ["^build"],
+
+      "inputs": ["$TURBO_DEFAULT$", "tsconfig*.json"]
+
+    },
+
+    "test": {
+
+      "dependsOn": ["^build"],
+
+      "inputs": ["$TURBO_DEFAULT$", "vitest.config.*", "jest.config.*"],
+
+      "outputs": ["coverage/**"]
+
+    },
+
+    "clean": {
+
+      "cache": false
+
+    }
+
+  },
+
+  "globalEnv": [
+
+    "NODE_ENV",
+
+    "CLAUDE_API_KEY",
+
+    "GITHUB_TOKEN",
+
+    "GITHUB_WEBHOOK_SECRET"
+
+  ]
+
+}
+
