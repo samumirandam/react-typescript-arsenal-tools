@@ -5,7 +5,23 @@
 
   "version": "0.1.0",
 
-  "description": "Claude AI integration for intelligent code analysis in React TypeScript Arsenal",
+  "description": "Claude AI integration for React TypeScript Arsenal",
+
+  "type": "module",
+
+  "exports": {
+
+    ".": {
+
+      "types": "./dist/index.d.ts",
+
+      "import": "./dist/index.mjs",
+
+      "require": "./dist/index.js"
+
+    }
+
+  },
 
   "main": "./dist/index.js",
 
@@ -13,25 +29,7 @@
 
   "types": "./dist/index.d.ts",
 
-  "exports": {
-
-    ".": {
-
-      "import": "./dist/index.mjs",
-
-      "require": "./dist/index.js",
-
-      "types": "./dist/index.d.ts"
-
-    }
-
-  },
-
-  "files": [
-
-    "dist/**"
-
-  ],
+  "files": ["dist/**/*", "README.md"],
 
   "scripts": {
 
@@ -39,43 +37,21 @@
 
     "dev": "tsup --watch",
 
-    "type-check": "tsc --noEmit",
-
-    "lint": "eslint src/**/*.ts",
-
-    "test": "vitest",
-
-    "clean": "rm -rf dist"
+    "clean": "rimraf dist"
 
   },
 
-  "keywords": ["claude", "ai", "analysis", "react", "typescript"],
-
   "dependencies": {
 
-    "@rta/core": "workspace:*",
-
-    "@anthropic-ai/sdk": "^0.20.0",
-
-    "zod": "^3.22.4"
+    "@rta/core": "workspace:*"
 
   },
 
   "devDependencies": {
 
-    "tsup": "^8.0.1",
+    "tsup": "^8.5.0",
 
-    "typescript": "^5.3.3",
-
-    "vitest": "^1.1.0",
-
-    "@types/node": "^20.10.0"
-
-  },
-
-  "publishConfig": {
-
-    "access": "public"
+    "typescript": "^5.8.3"
 
   }
 

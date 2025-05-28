@@ -5,13 +5,9 @@
 
   "version": "0.1.0",
 
-  "description": "Platform-agnostic core types and utilities for React TypeScript Arsenal",
+  "description": "Core types and utilities for React TypeScript Arsenal",
 
-  "main": "./dist/index.js",
-
-  "module": "./dist/index.mjs",
-
-  "types": "./dist/index.d.ts",
+  "type": "module",
 
   "exports": {
 
@@ -27,11 +23,13 @@
 
   },
 
-  "files": [
+  "main": "./dist/index.js",
 
-    "dist/**"
+  "module": "./dist/index.mjs",
 
-  ],
+  "types": "./dist/index.d.ts",
+
+  "files": ["dist/**/*", "README.md"],
 
   "scripts": {
 
@@ -39,37 +37,15 @@
 
     "dev": "tsup --watch",
 
-    "type-check": "tsc --noEmit",
-
-    "lint": "eslint src/**/*.ts",
-
-    "test": "vitest",
-
-    "clean": "rm -rf dist"
-
-  },
-
-  "keywords": ["react", "typescript", "analysis", "core", "cross-platform"],
-
-  "dependencies": {
-
-    "zod": "^3.22.4"
+    "clean": "rimraf dist"
 
   },
 
   "devDependencies": {
 
-    "tsup": "^8.0.1",
+    "tsup": "^8.5.0",
 
-    "typescript": "^5.3.3",
-
-    "vitest": "^1.1.0"
-
-  },
-
-  "publishConfig": {
-
-    "access": "public"
+    "typescript": "^5.8.3"
 
   }
 

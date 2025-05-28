@@ -1,25 +1,13 @@
-
 {
-
-  "$schema": "https://json.schemastore.org/tsconfig",
-
   "extends": "../../tools/build-configs/typescript.json",
-
   "compilerOptions": {
-
-    "composite": false,
-
-    "incremental": false,
-
     "outDir": "./dist",
-
-    "rootDir": "./src"
-
+    "rootDir": "./src",
+    "composite": true,
+    "incremental": true,
+    "tsBuildInfoFile": "./dist/.tsbuildinfo"
   },
-
   "include": ["src/**/*"],
-
-  "exclude": ["dist", "node_modules", "**/*.test.ts"]
-
+  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts"],
+  "references": [{ "path": "../core" }]
 }
-

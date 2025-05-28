@@ -5,7 +5,23 @@
 
   "version": "0.1.0",
 
-  "description": "React web-specific code analysis for React TypeScript Arsenal",
+  "description": "React web analyzer for React TypeScript Arsenal",
+
+  "type": "module",
+
+  "exports": {
+
+    ".": {
+
+      "types": "./dist/index.d.ts",
+
+      "import": "./dist/index.mjs",
+
+      "require": "./dist/index.js"
+
+    }
+
+  },
 
   "main": "./dist/index.js",
 
@@ -13,25 +29,7 @@
 
   "types": "./dist/index.d.ts",
 
-  "exports": {
-
-    ".": {
-
-      "import": "./dist/index.mjs",
-
-      "require": "./dist/index.js",
-
-      "types": "./dist/index.d.ts"
-
-    }
-
-  },
-
-  "files": [
-
-    "dist/**"
-
-  ],
+  "files": ["dist/**/*", "README.md"],
 
   "scripts": {
 
@@ -39,49 +37,25 @@
 
     "dev": "tsup --watch",
 
-    "type-check": "tsc --noEmit",
-
-    "lint": "eslint src/**/*.ts",
-
-    "test": "vitest",
-
-    "clean": "rm -rf dist"
+    "clean": "rimraf dist"
 
   },
-
-  "keywords": ["react", "typescript", "analysis", "web", "ast"],
 
   "dependencies": {
 
     "@rta/core": "workspace:*",
 
-    "@typescript-eslint/parser": "^6.15.0",
+    "@typescript-eslint/parser": "^6.21.0",
 
-    "@typescript-eslint/typescript-estree": "^6.15.0",
-
-    "@babel/parser": "^7.23.6",
-
-    "@babel/traverse": "^7.23.6",
-
-    "@babel/types": "^7.23.6",
-
-    "typescript": "^5.3.3",
-
-    "glob": "^10.3.10"
+    "@babel/parser": "^7.24.0"
 
   },
 
   "devDependencies": {
 
-    "tsup": "^8.0.1",
+    "tsup": "^8.5.0",
 
-    "vitest": "^1.1.0"
-
-  },
-
-  "publishConfig": {
-
-    "access": "public"
+    "typescript": "^5.8.3"
 
   }
 
