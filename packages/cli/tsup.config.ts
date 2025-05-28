@@ -1,9 +1,9 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
-  entry: ['src/index.ts'], // Solo el punto de entrada principal
-  format: ['esm'], // CLI needs to be ESM for chalk v5
-  dts: false, // CLI doesn't need type definitions
+  entry: ['src/index.ts'],
+  format: ['esm'], 
+  dts: false,
   clean: true,
   sourcemap: false,
   minify: false,
@@ -14,5 +14,8 @@ export default defineConfig({
   banner: {
     js: '#!/usr/bin/env node',
   },
-  onSuccess: 'chmod +x dist/index.js',
+  outExtension: ({ format }) => ({
+    js: '.js', // Mantener .js para compatibilidad con package.json
+  }),
+  onSuccess: process.platform === 'win32' ? undefined : 'chmod +x dist/index.js',
 });
