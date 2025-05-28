@@ -128,7 +128,7 @@ export class ReactWebAnalyzer implements PlatformAnalyzer {
         const fileFindings = this.analyzeFile(file, content, projectPath);
         findings.push(...fileFindings);
       } catch (error) {
-        console.warn(`Failed to analyze file ${file}:`, error);
+        console.warn(`Failed to analyze file ${file}:`, error instanceof Error ? error.message : 'Unknown error');
       }
     }
 
@@ -170,13 +170,15 @@ export class ReactWebAnalyzer implements PlatformAnalyzer {
     const relativePath = relative(projectPath, filePath);
 
     try {
-      // Parse the file to AST
+      // Parse the file to AST with updated parser options
       const ast = parse(content, {
-        ecmaVersion: 2022,
+        ecmaVersion: 'latest',
         sourceType: 'module',
         ecmaFeatures: {
           jsx: true,
         },
+        range: true,
+        loc: true,
       });
 
       const context: RuleContext = {
@@ -191,7 +193,19 @@ export class ReactWebAnalyzer implements PlatformAnalyzer {
       findings.push(...this.checkAnyUsage(context));
       findings.push(...this.checkMissingPropsInterface(context));
     } catch (error) {
-      console.warn(`Failed to parse ${filePath}:`, error);
+      console.warn(`Failed to parse ${filePath}:`, error instanceof Error ? error.message : 'Unknown parsing error');
+      
+      // Fallback to regex-based analysis if AST parsing fails
+      const context: RuleContext = {
+        filePath: relativePath,
+        content,
+        ast: null,
+      };
+      
+      findings.push(...this.checkAnonymousFunctions(context));
+      findings.push(...this.checkMissingKeys(context));
+      findings.push(...this.checkAnyUsage(context));
+      findings.push(...this.checkMissingPropsInterface(context));
     }
 
     return findings;
@@ -200,7 +214,7 @@ export class ReactWebAnalyzer implements PlatformAnalyzer {
   private checkAnonymousFunctions(context: RuleContext): Finding[] {
     const findings: Finding[] = [];
 
-    // Simple regex-based check for demonstration
+    // Regex-based check for demonstration
     const lines = context.content.split('\n');
     lines.forEach((line: string, index: number) => {
       if (line.includes('onClick={() =>') || line.includes('onChange={() =>')) {
