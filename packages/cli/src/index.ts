@@ -22,6 +22,7 @@ program
   .option('-f, --format <format>', 'Output format (json|table|markdown)', 'table')
   .option('-o, --output <file>', 'Save results to file')
   .option('--no-ai', 'Disable AI enhancement')
+  .option('--ai', 'Enable AI enhancement')
   .action(async (projectPath: string, options) => {
     try {
       console.log(`🔍 Analyzing React project at: ${projectPath}`);
@@ -42,6 +43,7 @@ program
           apiKey: process.env.CLAUDE_API_KEY,
         });
         result = await claudeService.enhanceAnalysis(result);
+        console.log('🚀 ~ enhanceAnalysis:', result);
       }
 
       // Output results
