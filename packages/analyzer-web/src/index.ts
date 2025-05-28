@@ -1,13 +1,14 @@
 import { readFileSync, readdirSync, statSync } from 'fs';
 import { join, extname, relative } from 'path';
 import { parse } from '@typescript-eslint/parser';
-import type {
-  AnalysisResult,
-  Finding,
-  Rule,
-  PlatformAnalyzer,
-  RuleContext,
-  ProjectMetadata,
+import {
+  type AnalysisResult,
+  type Finding,
+  type Rule,
+  type PlatformAnalyzer,
+  type RuleContext,
+  type ProjectMetadata,
+  calculateHealthScore,
 } from '@rta/core';
 
 /**
@@ -22,14 +23,23 @@ export class ReactWebAnalyzer implements PlatformAnalyzer {
   async analyzeProject(projectPath: string): Promise<AnalysisResult> {
     const metadata = await this.detectProjectMetadata(projectPath);
     const findings = await this.analyzeFiles(projectPath);
+    const healthScore = calculateHealthScore(findings);
 
     return {
       platform: this.platform,
       metadata,
       findings,
-      healthScore: this.calculateHealthScore(findings),
+      healthScore,
       timestamp: new Date().toISOString(),
       summary: `Found ${findings.length} issues in React project`,
+      metrics: {
+        totalFiles: this.getReactFiles(projectPath).length,
+        analyzedFiles: this.getReactFiles(projectPath).length,
+        errorCount: findings.filter(f => f.severity === 'error').length,
+        warningCount: findings.filter(f => f.severity === 'warning').length,
+        infoCount: findings.filter(f => f.severity === 'info').length,
+        overallHealth: healthScore,
+      },
     };
   }
 
@@ -192,7 +202,7 @@ export class ReactWebAnalyzer implements PlatformAnalyzer {
 
     // Simple regex-based check for demonstration
     const lines = context.content.split('\n');
-    lines.forEach((line, index) => {
+    lines.forEach((line: string, index: number) => {
       if (line.includes('onClick={() =>') || line.includes('onChange={() =>')) {
         findings.push({
           ruleId: 'react-anonymous-function',
@@ -212,7 +222,7 @@ export class ReactWebAnalyzer implements PlatformAnalyzer {
     const findings: Finding[] = [];
 
     const lines = context.content.split('\n');
-    lines.forEach((line, index) => {
+    lines.forEach((line: string, index: number) => {
       if (line.includes('.map(') && !line.includes('key=')) {
         findings.push({
           ruleId: 'react-missing-key',
@@ -232,7 +242,7 @@ export class ReactWebAnalyzer implements PlatformAnalyzer {
     const findings: Finding[] = [];
 
     const lines = context.content.split('\n');
-    lines.forEach((line, index) => {
+    lines.forEach((line: string, index: number) => {
       if (line.includes(': any') || line.includes('<any>')) {
         findings.push({
           ruleId: 'typescript-any-usage',
@@ -252,7 +262,7 @@ export class ReactWebAnalyzer implements PlatformAnalyzer {
     const findings: Finding[] = [];
 
     const lines = context.content.split('\n');
-    lines.forEach((line, index) => {
+    lines.forEach((line: string, index: number) => {
       if (
         line.includes('function ') &&
         line.includes('({') &&
@@ -270,19 +280,6 @@ export class ReactWebAnalyzer implements PlatformAnalyzer {
     });
 
     return findings;
-  }
-
-  private calculateHealthScore(findings: Finding[]): number {
-    if (findings.length === 0) return 10;
-
-    const errorCount = findings.filter(f => f.severity === 'error').length;
-    const warningCount = findings.filter(f => f.severity === 'warning').length;
-    const infoCount = findings.filter(f => f.severity === 'info').length;
-
-    const penalty = errorCount * 2 + warningCount * 1 + infoCount * 0.5;
-    const score = Math.max(0, 10 - penalty);
-
-    return Math.round(score * 10) / 10;
   }
 }
 

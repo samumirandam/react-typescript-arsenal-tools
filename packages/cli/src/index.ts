@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 import { Command } from 'commander';
 import { writeFileSync, existsSync } from 'fs';
 import { join } from 'path';

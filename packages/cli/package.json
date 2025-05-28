@@ -1,71 +1,38 @@
-
 {
-
   "name": "@rta/cli",
-
   "version": "0.1.0",
-
   "description": "Command line interface for React TypeScript Arsenal",
-
   "type": "module",
-
   "bin": {
-
     "rta": "./dist/index.js"
-
   },
-
   "exports": {
-
     ".": {
-
       "types": "./dist/index.d.ts",
-
       "import": "./dist/index.mjs",
-
       "require": "./dist/index.js"
-
     }
-
   },
-
   "main": "./dist/index.js",
-
   "module": "./dist/index.mjs",
-
   "types": "./dist/index.d.ts",
-
-  "files": ["dist/**/*", "README.md"],
-
+  "files": [
+    "dist/**/*",
+    "README.md"
+  ],
   "scripts": {
-
     "build": "tsup",
-
     "dev": "tsup --watch",
-
     "clean": "rimraf dist"
-
   },
-
   "dependencies": {
-
     "@rta/core": "workspace:*",
-
     "@rta/analyzer-web": "workspace:*",
-
     "@rta/claude-integration": "workspace:*",
-
     "commander": "^11.1.0"
-
   },
-
   "devDependencies": {
-
     "tsup": "^8.5.0",
-
     "typescript": "^5.8.3"
-
   }
-
 }
-

@@ -20,8 +20,6 @@
     "noEmit": false,
     "outDir": "./dist",
     "rootDir": "./src",
-
-    // Composite project settings - HABILITAMOS incremental
     "composite": true,
     "incremental": true,
     "tsBuildInfoFile": "./dist/.tsbuildinfo"
