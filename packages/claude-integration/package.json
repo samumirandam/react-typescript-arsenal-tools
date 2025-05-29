@@ -20,14 +20,39 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "test": "vitest",
+    "test:connection": "tsx -e \"import('./src/index.ts').then(m => new m.ClaudeService({apiKey: process.env.CLAUDE_API_KEY}).testConnection().then(console.log))\"",
+    "test:simple": "tsx test-simple.ts",
+    "test:simple:js": "node test-simple.js",
+    "test:debug": "tsx test-debug.ts",
+    "test:integration": "tsx example/test-integration-simple.ts",
+    "test:integration:full": "tsx example/test-integration.ts test",
+    "test:models": "tsx example/model-selection.ts models",
+    "test:models:rates": "tsx example/model-selection.ts rates",
+    "example:test": "tsx example/test-integration.ts",
+    "example:models": "tsx example/model-selection.ts"
   },
   "dependencies": {
-    "@rta/core": "workspace:*"
+    "@rta/core": "workspace:*",
+    "@anthropic-ai/sdk": "^0.27.0"
   },
   "devDependencies": {
     "tsup": "^8.5.0",
     "typescript": "^5.8.3",
-    "rimraf": "^6.0.1"
-  }
+    "rimraf": "^6.0.1",
+    "vitest": "^2.1.8",
+    "tsx": "^4.19.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "claude",
+    "ai",
+    "react",
+    "typescript",
+    "code-analysis",
+    "anthropic"
+  ]
 }

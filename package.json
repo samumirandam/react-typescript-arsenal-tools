@@ -12,9 +12,9 @@
     "react-native",
     "monorepo"
   ],
-  "author": "Your Name",
+  "author": "Samuel Miranda Martínez (samumirandam)",
   "license": "MIT",
-  "packageManager": "pnpm@8.15.0",
+  "packageManager": "pnpm@10.11.0",
   "engines": {
     "node": ">=18.0.0",
     "pnpm": ">=8.0.0"
@@ -61,5 +61,8 @@
       "@typescript-eslint/parser": "^7.18.0",
       "@typescript-eslint/eslint-plugin": "^7.18.0"
     }
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.52.0"
   }
 }
